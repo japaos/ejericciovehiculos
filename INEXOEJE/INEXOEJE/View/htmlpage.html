@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APATARESA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+</head>
+<body>
+
+
+    <nav class="navbar navbar-span-lg navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">SOLUCION CONSULTAS</a>
+        <button id="VentanaR" class="btn btn-primary btn-block text-center">Registro</button>
+        <button id="VentanaP" class="btn btn-primary btn-block text-center">Sala Pendientes</button>
+        <button id="VentanaE" class="btn btn-primary btn-block text-center">Sala Espera</button>
+        <ul class="navbar-nav ml-auto">
+            <form class="form-inline my2 my-lg-8">
+                <input type="search" id="busqueda" class="form-control mr-sm-2" placeholder="Buscar paciente por historia">
+
+            </form>
+            <button class="btn btn-success my-2 my-sm-0" type="submit">
+                Buscar
+            </button>
+
+        </ul>
+    </nav>
+
+    <!-- ventana registro auto-->
+    <div id="Vista_funciones" style="display: block;">
+        <div class="container pd-4">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <!-- formulario de  registro de paciente -->
+                            <div id="task_form_paciente" style="display: block;">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" name=""
+                                               id="Nombre" placeholder="Nombre Dueño"
+                                               class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name=""
+                                               id="Apellido" placeholder="Apellido Dueño"
+                                               class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name=""
+                                               id="Identificacion" placeholder="identificacion Dueño"
+                                               class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name=""
+                                               id="modelo" placeholder="Modelo Auto"
+                                               class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name=""
+                                               id="Marca" placeholder="Marca auto"
+                                               class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name=""
+                                               id="Year" placeholder="Año auto"
+                                               class="form-control">
+                                    </div>
+                                </form>
+                                <div>
+                                    <button id="almacenar" class="btn btn-primary btn-block text-center">Guardar Auto</button>
+                                </div>
+                            </div>
+                            <!-- formulario de registro de consultas medicas -->
+                            <div id="task_form_consulta" style="display: none;">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" name=""
+                                               id="Id_Consulta" placeholder="Id_Consulta"
+                                               class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name=""
+                                               id="nombre_medico" placeholder="Nombre Medico"
+                                               class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="numero_pacientes" id="numero_pacientes" cols="30" rows="10"
+                                               class="form-control" placeholder="Pacientes por consulta" value="0" style="display: none;"></input>
+                                    </div>
+                                    <div class="form-group">
+                                        <p>
+                                            Tipo de consulta:
+                                            <select name="" id="tipo_consulta">
+                                                <option value="urgencia">Urgencia</option>
+                                                <option value="cgi">CGI</option>
+                                                <option value="pediatria">Pediatria</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="form-group">
+                                        <p>
+                                            Estado de la consulta:
+                                            <select name="" id="estado_consulta">
+                                                <option value="libre">libre</option>
+                                                <option value="ocupado">ocupado</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                </form>
+                                <div>
+                                    <button id="almacenar_c" class="btn btn-primary btn-block text-center">Guardar consulta</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col md-7">
+                    <p>Funcionalidades del aplicativo</p>
+                    <table class="table table-bordered table-sm" id="muestras">
+                        <thead>
+                            <tr>
+                                <td><button id="listar" class="btn btn-primary btn-block text-center">Listar Mayor riesgo</button> </td>
+                                <td>
+                                    <input name="historia2" id="historia2" cols="30" rows="10"
+                                           class="form-control" placeholder="Historia para consultar"></input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button id="atender" class="btn btn-primary btn-block text-center">Atender Paciente</button>
+                                </td>
+                                <td id="Atendido">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button id="libera">Liberar Consultas</button>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button id="l_fumador" class="btn btn-primary btn-block text-center">Listar Fumadores</button>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button id="mejor" class="btn btn-primary btn-block text-center">Consulta Mas pacientes atendidos</button>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button id="anciano" class="btn btn-primary btn-block text-center">Paciente mayor edad</button>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button id="optimizar_p" class="btn btn-primary btn-block text-center">Optimizar proceso</button>
+                                </td>
+
+                            </tr>
+                        </thead>
+                    </table>
+                    <tbody id="task"></tbody>
+                </div>
+            </div>
+        </div>
+        <div class="container pd-4">
+            <section id="ordering">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Resultado de Funcion</h4>
+                                <p class="card-text"></p>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body card-dashboard table-responsive">
+                                    <table class="table table-striped table-bordered default-ordering">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Edad</th>
+                                                <th>Historia clinica</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="mostrador">
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Edad</th>
+                                                <th>Historia Clinica</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- vista pacientes en espera -->
+
+    <div id="Vista_espera" style="display: none;">
+        <div class="container pd-4">
+            <section id="ordering">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Sala de espera</h4>
+                                <p class="card-text"></p>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body card-dashboard table-responsive">
+                                    <table class="table table-striped table-bordered default-ordering">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Edad</th>
+                                                <th>Historia Clinica</th>
+                                                <th>Asignado a</th>
+                                                <th>Parametro Individuo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="TP_Espera">
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Edad</th>
+                                                <th>Historia Clinica</th>
+                                                <th>Asignado a</th>
+                                                <th>Parametro Individuo</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+    </div>
+
+    <!-- vista pacientes pendientes -->
+
+    <div id="Vista_pendiente" style="display: none;">
+        <div class="container pd-4">
+            <section id="ordering">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Sala de pendientes</h4>
+                                <p class="card-text"></p>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body card-dashboard table-responsive">
+                                    <table class="table table-striped table-bordered default-ordering">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Edad</th>
+                                                <th>Historia Clinica</th>
+                                                <th>Asignado a</th>
+                                                <th>Parametro Individuo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="TP_Pendiente">
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Edad</th>
+                                                <th>Historia Clinica</th>
+                                                <th>Asignado a</th>
+                                                <th>Parametro Individuo</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <!-- Frontend Logic -->
+
+    <script src="app.js"></script>
+</body>
+</html>
